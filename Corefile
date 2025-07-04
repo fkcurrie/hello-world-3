@@ -1,0 +1,24 @@
+.:53 {
+    errors
+    health {
+      lameduck 5s
+    }
+    ready
+    log . {
+      class error
+    }
+    hosts {
+      10.0.0.172 xubuntu
+      fallthrough
+    }
+    kubernetes cluster.local in-addr.arpa ip6.arpa {
+      pods insecure
+      fallthrough in-addr.arpa ip6.arpa
+    }
+    prometheus :9153
+    forward . /etc/resolv.conf
+    cache 30
+    loop
+    reload
+    loadbalance
+}
