@@ -19,10 +19,18 @@ jobs:
 
       - name: Update deployment
         run: |
-          echo "${{ github.sha }}" > commit_sha.txt
-          sed -i "s|image:.*|image: localhost:32000/fcurrie/hello-world-app:$(cat commit_sha.txt)|" deployment.yaml
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add deployment.yaml
-          git commit -m "Update deployment image to ${{ github.sha }}"
-          git push origin main
+          echo "Before substitution:"
+          cat deployment.yaml
+          
+          echo "Commit SHA is: ${{ github.sha }}"
+          sed -i "s|image:.*|image: localhost:32000/fcurrie/hello-world-app:${{ github.sha }}|" deployment.yaml
+          
+          echo "After substitution:"
+          cat deployment.yaml
+          
+          # Temporarily disabled for debugging
+          # git config --global user.name "github-actions"
+          # git config --global user.email "github-actions@github.com"
+          # git add deployment.yaml
+          # git commit -m "Update deployment image to ${{ github.sha }}"
+          # git push origin main
