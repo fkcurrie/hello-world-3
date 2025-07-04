@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: hello-world-app
-        image: localhost:32000/fcurrie/hello-world-app:94520e2b8b0e0b3b2b1b1b1b1b1b1b1b1b1b1b1b
+        image: localhost:32000/fcurrie/hello-world-app:8e254f3b2b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b
         ports:
         - containerPort: 5000
