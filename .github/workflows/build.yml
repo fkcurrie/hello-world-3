@@ -18,10 +18,9 @@ jobs:
           docker push localhost:32000/fcurrie/hello-world-app:${{ github.sha }}
 
       - name: Update deployment
-        env:
-          IMAGE_TAG: localhost:32000/fcurrie/hello-world-app:${{ github.sha }}
         run: |
-          sed -i "s|image:.*|image: $IMAGE_TAG|" deployment.yaml
+          echo "${{ github.sha }}" > commit_sha.txt
+          sed -i "s|image:.*|image: localhost:32000/fcurrie/hello-world-app:$(cat commit_sha.txt)|" deployment.yaml
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add deployment.yaml
