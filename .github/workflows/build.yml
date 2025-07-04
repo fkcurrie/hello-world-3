@@ -29,4 +29,4 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add deployment.yaml
           git commit -m "Update deployment image to ${{ github.sha }}"
-          git push
+          git push origin main
